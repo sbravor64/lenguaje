@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!-- El elemento <schema> es el elemento raíz de cada esquema XML.
+Ahora bien, para escribirlo, es muy común utilizar el prefijo xsd o xs 
+El elemento schema puede contener algunos atributos -->
+<xs:schema  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://elpuig.xeill.net"
+            xmlns="http://elpuig.xeill.net"
+            elementFormDefault="qualified">
+<!-- Tenemos cuatro "atributos" declarados: -->
+
+<!-- 1º xmlns:xs="http://www.w3.org/2001/XMLSchema"
+Indica que los elementos y tipos de datos utilizados
+en el esquema provienen del espacio de nombres "URL".
+Dichos elementos y tipos de datos deben llevar el prefijo xs
+(xs:schema, xs:element, xs:complexType, xs:string...) -->
+
+<!-- 2º targetNamespace="http://elpuig.xeill.net"
+Indica que los elementos definidos por este esquema
+provienen del espacio de nombres "URL_2"-->
+
+<!-- 3º xmlns="http://elpuig.xeill.net"
+Indica que el espacio de nombres predeterminado es "URL_2"-->
+
+<!-- 4º elementFormDefault="qualified"
+Indica que los elementos utilizados por el 
+documento XML que se declaran en este esquema
+deben estar calificados como espacio de nombres,
+es decir, tienen que perteneder a un espacio de nombres -->
+
+  <xs:element name="esdeveniments">
+    <xs:complexType>
+      <xs:sequence>
+  <!-- Definimos un elemento llamado "esdeveniments"
+  - Le decimos que este elemento tendrá tipos de datos complejos (xs:complexType),
+  esto quiere decir que puede tener: elementos dentro de otros elementos,
+  elementos que tienen atributos, elementos mixtos que tienen datos y otros elementos
+  y por ultimo elementos vacios.
+  - Utilizaremos el elemento xs:sequence para indicar una secuencia de elementos
+  que tienen que aparecer en el documento XML-->
+
+  <xs:element name="esdeveniment" minOccurs="0" maxOccurs="unbounded">
+    <xs:complexType>
+      <xs:sequence>
+  <!-- Dentro de "esdeveniments" definimos un elemento llamado "esdeveniment".
+  - Este elemento tendra en su interior elementos por lo tanto
+  por lo tanto contendrá tipos de datos complejos (xs:complexType)
+  - Utilizaremos el elemento xs:sequence para indicar una secuencia de elementos
+  que tienen que aparecer dentro del elemento "esdeveniment" en el documento XML -->
+
+        <xs:element name="grup" type="xs:string"/>
+        <!-- definimos el elemento "grup" y el tipo de dato que tendrá el elemento,
+        tendrá texto (string) porque vamos a guardar el nombre de los grupos -->
+        <xs:element name="lloc" type="xs:string"/>
+        <!-- definimos el elemento "lloc" y el tipo de dato que tendrá el elemento,
+        tendrá texto (string) por que vamos a guardar el lugar de los eventos -->
+        <xs:element name="data" type="xs:dateTime"/>
+        <!-- definimos el elemento "data" y el tipo de dato que tendrá el elemento,
+        este elemento tendrá fecha y hora (dateTime)
+        por que vamos a guardar el día y la hora del evento,
+        esto nos dará error cuando en un evento solo tenemos la fecha y no la hora
+        del evento, en ese caso tendremos que añadir la hora en (00:00:00). -->
+        <xs:element name="entrada" default="0">
+          <xs:complexType>
+            <xs:simpleContent>
+        <!-- Definimos el elemento "entrada" y le añadimos que por defecto
+          en su interior tenga "0" ya que la entrada puede ser gratuita.
+        - Este elemento tendra en su interior tipos de datos complejos (xs:complexType)
+          como puede ser un atributo
+        - Este elemento tendrá en su interior contenido simple (xs:simpleContent),
+          sin elementos descendientes. -->  
+              <xs:extension base="xs:decimal">
+              <!-- El elemento "entrada" tendrá en su interior
+              datos numericos (decimal), ya que vamos a guardar
+              el precio de la entrada, es importante que en "xs:element" de la "entrada"
+              tengamos puesto (default="0") si no tenemos esto puesto nos dará error,
+              ya que el elemento "entrada" al ser decimal tiene que tener en su interior
+              algun dato. -->
+                <xs:attribute name="gratuita">
+                  <xs:simpleType>
+                  <!-- El elemento "entrada" es de tipo complejo,
+                  así que podremos definir un atributo (xs:atribute),
+                  el nombre del atributo será "gratuita"
+                  - El atributo "gratuita" tendrá en su interior
+                  tipos de datos simples (xs:simpleType) -->
+                    <xs:restriction base="xs:string">
+                    <!-- Establecemos una restricción,
+                    que el contenido del atributo "gratuita" sea texto (string) -->
+                      <xs:enumeration value="si"/>
+                      <xs:enumeration value="no"/>
+                      <!-- definiremos una lista de valores permitidos 
+                      en el atributo (xs:enumeration), los valores serán (si|no) -->
+                    </xs:restriction>
+                    <!-- cerramos el elemento (xs:restriction) -->
+                  </xs:simpleType>
+                  <!-- cerramos el elemento (xs:simpleType) -->
+                </xs:attribute>
+                <!-- cerramos el atributo (xs:attribute) -->
+              </xs:extension>
+              <!-- cerramos el elemento (xs:extension) -->
+            </xs:simpleContent>
+            <!-- cerramos el elemento (xs:simpleContent) -->
+          </xs:complexType>
+          <!-- cerramos el elemento (xs:complexType) -->
+        </xs:element>
+        <!-- cerramos el elemento "entrada" -->
+
+      </xs:sequence>
+      <!-- cerramos el elemento (xs:sequence) -->
+    </xs:complexType>
+    <!-- cerramos el elemento (xs:complexType) -->
+  </xs:element>
+  <!-- cerramos el elemento "esdeveniment" -->
+
+      </xs:sequence>
+      <!-- cerramos el elemento (xs:sequence) -->
+    </xs:complexType>
+    <!-- cerramos el elemento (xs:complexType) -->
+  </xs:element>
+  <!-- cerramos el elemento "esdeveniments" -->
+
+</xs:schema>
+<!-- cerramos el elemento raíz -->
