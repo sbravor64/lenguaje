@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Añadimos una referencia al esquema XML (ejemplo.xsd) -->
+<esdeveniments  xmlns="http://elpuig.xeill.net"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://elpuig.xeill.net ejemplo.xsd">
+<!-- Tenemos 3 "atributos" declarados: -->
+
+<!-- 1º xmlns="http://elpuig.xeill.net"
+Especifica la declaración de espacio de nombres por defecto.
+Esta declaración le dice al validador de esquemas que todos
+los elementos utilizados en este documento XML están 
+declarados en el espacio de nombres "URL_2" -->
+
+<!-- 2º xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+Para vincular un esquema a un documento XML, es obligatorio 
+que este último haga referencia al espacio de nombres
+"http://www.w3.org/2001/XMLSchema-instance"
+Para ello, habitualmente se utiliza el prefijo xsi. -->
+
+<!-- 3º xsi:schemaLocation="http://elpuig.xeill.net ejemplo.xsd"
+Utilizamos el atributo schemaLocation.
+Este atributo tiene dos valores separados por un espacio.
+El primer valor es el espacio de nombres a utilizar "URL_2".
+El segundo valor es la ubicación del esquema XML (XSD) que se usará
+para el espacio de nombres "URL_2" -->
+
+	<esdeveniment>
+		<grup>Oques Grasses</grup>
+		<lloc>El moll de la fusta</lloc>
+		<data>2017-09-12T22:30:00</data>
+		<entrada gratuita="si"/>
+	</esdeveniment>
+	<esdeveniment>
+		<grup>Zoo</grup>
+		<lloc>Sala Apolo</lloc>
+		<data>2018-01-03T02:45:00</data>
+		<entrada gratuita="no">25</entrada>
+	</esdeveniment>
+	<esdeveniment>
+		<grup>Txarango</grup>
+		<lloc>El Poble Espanyol</lloc>
+		<data>2018-06-24T00:00:00</data>
+		<!-- Este es el caso que hablamos en el documento (ejemplo.xsd) línea. 57,
+		si no disponemos de la hora del evento tendremos que poner "00:00:00",
+		ya que si lo dejamos vacío nos dará error, así que lo añadimos. -->
+		<entrada gratuita="no">175</entrada>
+	</esdeveniment>
+</esdeveniments>
