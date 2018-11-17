@@ -22,7 +22,7 @@ Utilizamos el atributo schemaLocation.
 Este atributo tiene dos valores separados por un espacio.
 El primer valor es el espacio de nombres a utilizar "URL_2".
 El segundo valor es la ubicación del esquema XML (XSD) que se usará
-para el espacio de nombres "URL_2" -->
+para el espacio de nombres "ejemplo.xsd" -->
 
 	<esdeveniment>
 		<grup>Oques Grasses</grup>
