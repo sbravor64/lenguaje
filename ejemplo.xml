@@ -40,7 +40,7 @@ para el espacio de nombres "URL_2" -->
 		<grup>Txarango</grup>
 		<lloc>El Poble Espanyol</lloc>
 		<data>2018-06-24T00:00:00</data>
-		<!-- Este es el caso que hablamos en el documento (ejemplo.xsd) línea. 57,
+		<!-- Este es el caso que hablamos en el documento (ejemplo.xsd) línea. 57-61,
 		si no disponemos de la hora del evento tendremos que poner "00:00:00",
 		ya que si lo dejamos vacío nos dará error, así que lo añadimos. -->
 		<entrada gratuita="no">175</entrada>
